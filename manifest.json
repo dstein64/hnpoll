@@ -9,5 +9,9 @@
    "permissions": [
       "tabs"
    ],
-   "version": "1.00"
+   "version": "1.0",
+   "icons": {
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+   }
 }
