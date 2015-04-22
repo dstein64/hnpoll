@@ -4,11 +4,16 @@
 //   <script type="text/javascript" src="/blog/wp-content/uploads/2013/07/hnBookmarklet.js"></script>
 // in the blog post. The document.write happens right after the <script>.
 
-// you used http://javascript-minifier.com/ to minify content.js.
+// ideas for minification here: https://developers.google.com/speed/docs/insights/MinifyResources
+// you used Closure Compiler to minify content.js.
+// https://developers.google.com/closure/compiler/
+// java -jar compiler.jar content.js
+// also available online: http://closure-compiler.appspot.com/home
+// 
 // Then you replace single quotes with \' and double quotes with &quot;
 // and then paste below.
-// to see how the minifier works, you also used a beautifier to de-minify:
-// http://jsbeautifier.org/
+// to see how the minifier works, there are beutifiers to de-minify:
+// e.g., http://jsbeautifier.org/
 
 // hacky way to get bookmarklets working in a Wordpress post
 var style = ';padding: 1px 4px 2px; \
@@ -24,11 +29,7 @@ white-space: nowrap; \
 vertical-align: baseline; \
 background-color: rgb(255, 102, 0);'
 
-var js = 'javascript:!function(){var e=&quot;news.ycombinator.com&quot;===document.location.hostname,t=&quot;Poll:&quot;===document.title.substring(0,5);if(e&&t){for(var n\
-=&quot;_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb&quot;,a=document.getElementsByClassName(n),o=a.length-1;o>=0;o--){var r=a[o];r.parentElement.removeChild(r)}for(var l=d\
-ocument.querySelectorAll(\'span[id^=&quot;score_&quot;]\'),s=[],o=1;o<l.length;o++)s[o-1]=l[o];for(var i=0,o=0;o<s.length;o++){var d=parseInt(s[o].textContent);i=Math.max(\
-i,d)}if(isFinite(i)&&i>0)for(var o=0;o<s.length;o++){var m=s[o],d=parseInt(m.textContent),c=document.createElement(&quot;div&quot;);c.className=n;var b=&quot;400&quot;;c.s\
-tyle.width=d/i*b+&quot;px&quot;,c.style.height=&quot;10px&quot;,c.style.background=&quot;#828282&quot;,c.style.marginTop=&quot;5px&quot;,m.parentNode.appendChild(c)}}}();'
+var js = 'javascript:(function(){var a=&quot;news.ycombinator.com&quot;===document.location.hostname,c=&quot;Poll:&quot;===document.title.substring(0,5);if(a&&c){c=document.getElementsByClassName(&quot;_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb&quot;);for(a=c.length-1;0<=a;a--){var b=c[a];b.parentElement.removeChild(b)}b=document.querySelectorAll(\'span[id^=&quot;score_&quot;]\');c=[];for(a=1;a<b.length;a++)c[a-1]=b[a];for(a=b=0;a<c.length;a++)var e=parseInt(c[a].textContent),b=Math.max(b,e);if(isFinite(b)&&0<b)for(a=0;a<c.length;a++){var f=c[a],e=parseInt(f.textContent),d=document.createElement(&quot;div&quot;);d.className=&quot;_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb&quot;;d.style.width=e/b*400+&quot;px&quot;;d.style.height=&quot;10px&quot;;d.style.background=&quot;#828282&quot;;d.style.marginTop=&quot;5px&quot;;f.parentNode.appendChild(d)}}})();';
 
 // here's how you were doing it, prior to updates on 4/22/2015
 //var js = 'javascript:(function(){if(document.title.substring(0,5)==&quot;Poll:&quot;){var e=document.querySelectorAll(\'span[id^=&quot;score_&quot;]\');var t=[];for(var \
