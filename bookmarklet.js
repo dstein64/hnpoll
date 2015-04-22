@@ -1,4 +1,8 @@
 // here's how you make the bookmarlet work on Wordpress
+// this is the script.
+// you inject this with:
+//   <script type="text/javascript" src="/blog/wp-content/uploads/2013/07/hnBookmarklet.js"></script>
+// in the blog post. The document.write happens right after the <script>.
 
 // hacky way to get bookmarklets working in a Wordpress post
 var style = ';padding: 1px 4px 2px; \
