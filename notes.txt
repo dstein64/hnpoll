@@ -1,0 +1,4 @@
+Some of the code in content.js is specifically so the code
+works as a bookmarklet. For example, you remove existing bars
+so that multiple bars are not created on a second click of the
+bookmarklet.
