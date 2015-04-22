@@ -11,6 +11,7 @@
 // also available online: http://closure-compiler.appspot.com/home
 // 
 // Then you replace single quotes with \' and double quotes with &quot;
+// and also remove newlines (not sure why there were newlines after minification??)
 // and then paste below.
 // to see how the minifier works, there are beutifiers to de-minify:
 // e.g., http://jsbeautifier.org/
