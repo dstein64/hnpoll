@@ -20,10 +20,7 @@
                 bar.style.height = '10px';
                 bar.style.background = '#828282';
                 bar.style.marginTop = '5px';
-                if (n.parentNode.childElementCount > 1)
-                    n.parentNode.replaceChild(bar, n.parentNode.childNodes[1]);
-                else
-                    n.parentNode.appendChild(bar);
+                n.parentNode.appendChild(bar);
             }
         }
     }
