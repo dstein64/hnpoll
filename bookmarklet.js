@@ -4,6 +4,12 @@
 //   <script type="text/javascript" src="/blog/wp-content/uploads/2013/07/hnBookmarklet.js"></script>
 // in the blog post. The document.write happens right after the <script>.
 
+// you used http://javascript-minifier.com/ to minify content.js.
+// Then you replace single quotes with \' and double quotes with &quot;
+// and then paste below.
+// to see how the minifier works, you also used a beautifier to de-minify:
+// http://jsbeautifier.org/
+
 // hacky way to get bookmarklets working in a Wordpress post
 var style = ';padding: 1px 4px 2px; \
 margin: 0 2px; \
