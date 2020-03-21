@@ -4,10 +4,18 @@
 
 # easier to see args in an array than a string
 ARGS=()
-ARGS+=("content.js")
-ARGS+=("icon-48.png")
-ARGS+=("icon-128.png")
+ARGS+=("src/")
+ARGS+=("icons/")
 ARGS+=("manifest.json")
 
-zip -r archive.zip "${ARGS[@]}"
+# exclude
+ARGS+=("-x")
+ARGS+=("*.DS_Store")
 
+archive="archive.zip"
+
+if [ -f "${archive}" ]; then
+	rm "${archive}"
+fi
+
+zip -r "${archive}" "${ARGS[@]}"
