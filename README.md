@@ -7,12 +7,12 @@ generates bar charts for Hacker News (HN) polls.
 It is available from the Google Chrome Web Store:
 https://chrome.google.com/webstore/detail/bar-charts-for-hacker-new/dpdhhdidaaippolkbadpdhlffnpnjimd
 
-To use hnpoll, install the extension, and it will work automatically on relevant HN pages.
+To use *hnpoll*, install the extension, and it will work automatically on relevant HN pages.
 
 Screenshot
 ----------
 
-The following image shows the links produced by HNDD on a duplicate HN submission page.
+The following image shows a bar chart produced by *hnpoll* on an HN poll.
 
 ![Screenshot](screenshot.png)
 
