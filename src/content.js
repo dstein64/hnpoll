@@ -25,11 +25,17 @@
                 const points = parseInt(n.textContent);
                 const bar = document.createElement('div');
                 bar.className = _class;
-                const maxWidth = '400'; // in pixels
+                const left = n.parentNode.getBoundingClientRect().left;
+                let maxWidth = 400; // in pixels
+                maxWidth = Math.min(maxWidth, window.screen.width - left - 30);
                 bar.style.width = ((points / maxPoints) * maxWidth) + 'px';
                 bar.style.height = '10px';
                 bar.style.background = '#828282';
                 bar.style.marginTop = '5px';
+                bar.style.marginLeft = '0px';
+                bar.style.marginRight = '0px';
+                bar.style.paddingLeft = '0px';
+                bar.style.paddingRight = '0px';
                 n.parentNode.appendChild(bar);
             }
         }
