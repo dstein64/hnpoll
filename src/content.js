@@ -27,6 +27,7 @@
                 bar.className = _class;
                 const left = n.parentNode.getBoundingClientRect().left;
                 let maxWidth = 400; // in pixels
+                if (maxWidth <= 0) return;
                 maxWidth = Math.min(maxWidth, window.screen.width - left - 30);
                 bar.style.width = ((points / maxPoints) * maxWidth) + 'px';
                 bar.style.height = '10px';
