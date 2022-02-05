@@ -25,7 +25,7 @@
         const left = n.parentNode.getBoundingClientRect().left;
         let maxWidth = 400;  // in pixels
         maxWidth = Math.min(maxWidth, window.screen.width - left - 30);
-        if (maxWidth <= 0) return;
+        if (maxWidth <= 0) continue;
         bar.style.width = ((points / maxPoints) * maxWidth) + 'px';
         bar.style.height = '10px';
         bar.style.background = '#828282';
