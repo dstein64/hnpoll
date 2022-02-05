@@ -2,9 +2,7 @@
     if (document.location.hostname !== 'news.ycombinator.com') return;
     if (document.title.substring(0, 5) !== 'Poll:') return;
     const _class = '_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb';
-    const bars = document.getElementsByClassName(_class);
-    for (let i = bars.length - 1; i >= 0; i--) {
-        const e = bars[i];
+    for (const e of [...document.getElementsByClassName(_class)]) {
         e.parentElement.removeChild(e);
     }
     let nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
