@@ -9,11 +9,7 @@
             e.parentElement.removeChild(e);
         }
 
-        const selected = document.querySelectorAll('.fatitem .score');
-        const nodes = [];
-        for (let i = 1; i < selected.length; i++) {
-            nodes[i-1] = selected[i];
-        }
+        const nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
         let maxPoints = 0;
         for (let i = 0; i < nodes.length; i++) {
             const points = parseInt(nodes[i].textContent);
