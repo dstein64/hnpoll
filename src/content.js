@@ -1,10 +1,10 @@
 (function(){
-    const hackernews = document.location.hostname === "news.ycombinator.com";
-    const poll = document.title.substring(0,5) === "Poll:";
+    const hackernews = document.location.hostname === 'news.ycombinator.com';
+    const poll = document.title.substring(0, 5) === 'Poll:';
     if (!hackernews || !poll) return;
     const _class = '_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb';
     const bars = document.getElementsByClassName(_class);
-    for (let i = bars.length-1; i >= 0 ; i--) {
+    for (let i = bars.length - 1; i >= 0 ; i--) {
         const e = bars[i];
         e.parentElement.removeChild(e);
     }
