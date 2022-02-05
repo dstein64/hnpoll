@@ -8,8 +8,13 @@
         const e = bars[i];
         e.parentElement.removeChild(e);
     }
-    const nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
+    let nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
     if (nodes.length === 0) return;
+    let tbody = nodes[0];
+    while (tbody !== null && tbody.tagName !== 'TBODY')
+        tbody = tbody.parentElement;
+    if (tbody === null) return;
+    nodes = nodes.filter(x => tbody.contains(x));
     const points = nodes.map(x => parseInt(x.textContent));
     const maxPoints = Math.max(...points);
     if (!isFinite(maxPoints) || maxPoints <= 0) return;
@@ -18,9 +23,9 @@
         const bar = document.createElement('div');
         bar.className = _class;
         const left = n.parentNode.getBoundingClientRect().left;
-        let maxWidth = 400; // in pixels
-        if (maxWidth <= 0) return;
+        let maxWidth = 400;  // in pixels
         maxWidth = Math.min(maxWidth, window.screen.width - left - 30);
+        if (maxWidth <= 0) return;
         bar.style.width = ((points / maxPoints) * maxWidth) + 'px';
         bar.style.height = '10px';
         bar.style.background = '#828282';
