@@ -9,7 +9,7 @@
             e.parentElement.removeChild(e);
         }
 
-        const selected = document.querySelectorAll('span[id^="score_"]');
+        const selected = document.querySelectorAll('.fatitem .score');
         const nodes = [];
         for (let i = 1; i < selected.length; i++) {
             nodes[i-1] = selected[i];
