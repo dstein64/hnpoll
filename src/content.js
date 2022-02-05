@@ -10,11 +10,8 @@
         }
 
         const nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
-        let maxPoints = 0;
-        for (let i = 0; i < nodes.length; i++) {
-            const points = parseInt(nodes[i].textContent);
-            maxPoints = Math.max(maxPoints,points);
-        }
+        const points = nodes.map(x => parseInt(x.textContent));
+        const maxPoints = Math.max(...points);
         if (isFinite(maxPoints) && maxPoints > 0) {
             for (let i = 0; i < nodes.length; i++) {
                 const n = nodes[i];
