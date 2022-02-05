@@ -9,11 +9,11 @@
         e.parentElement.removeChild(e);
     }
     const nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
+    if (nodes.length === 0) return;
     const points = nodes.map(x => parseInt(x.textContent));
     const maxPoints = Math.max(...points);
     if (!isFinite(maxPoints) || maxPoints <= 0) return;
-    for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
+    for (const n of nodes) {
         const points = parseInt(n.textContent);
         const bar = document.createElement('div');
         bar.className = _class;
