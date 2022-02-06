@@ -15,6 +15,7 @@
     nodes = nodes.filter(x => tbody.contains(x));
     const points = nodes.map(x => parseInt(x.textContent));
     const maxPoints = Math.max(...points);
+    const sumPoints = points.reduce((a, b) => a + b, 0);
     if (!isFinite(maxPoints) || maxPoints <= 0) return;
     for (const n of nodes) {
         const points = parseInt(n.textContent);
@@ -32,6 +33,7 @@
         bar.style.marginRight = '0px';
         bar.style.paddingLeft = '0px';
         bar.style.paddingRight = '0px';
+        bar.setAttribute('title', (100 * points / sumPoints).toFixed(1) + '%');
         n.parentNode.appendChild(bar);
     }
     const indexedPoints = points.map((x, idx) => ({points: x, idx: idx}));
