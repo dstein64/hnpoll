@@ -37,19 +37,14 @@
     const indexedPoints = points.map((x, idx) => ({points: x, idx: idx}));
     indexedPoints.sort((a, b) => b.points - a.points);
     const groupSize = tbody.children.length / nodes.length;
-    const tmps = [];
+    const elements = [];
     for (let i = 0; i < indexedPoints.length; ++i) {
         const idx = indexedPoints[i].idx;
         const points = indexedPoints[i].points;
         for (let j = idx * groupSize; j < idx * groupSize + groupSize; ++j) {
-            // A temporary row is inserted so that positions are maintained.
-            const tmp = document.createElement('tr');
-            tmps.push(tmp);
-            const e = tbody.replaceChild(tmp, tbody.children[j]);
-            tbody.appendChild(e);
+            elements.push(tbody.children[j]);
         }
     }
-    for (const tmp of tmps) {
-        tmp.parentElement.removeChild(tmp);
-    }
+    tbody.textContent = '';
+    tbody.append(...elements);
 })();
