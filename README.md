@@ -14,7 +14,7 @@ Screenshot
 
 The following image shows a bar chart produced by *hnpoll* on an HN poll.
 
-![Screenshot](screenshot.png)
+<img src="https://github.com/dstein64/media/blob/main/hnpoll/screenshot.png?raw=true" width="796" />
 
 License
 -------
