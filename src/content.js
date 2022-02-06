@@ -1,6 +1,7 @@
-(function(){
+chrome.storage.local.get(['options'], function(storage) {
     if (document.location.hostname !== 'news.ycombinator.com') return;
     if (!document.title.startsWith('Poll:')) return;
+    const options = storage.options;
     const _class = '_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb';
     for (const e of [...document.getElementsByClassName(_class)]) {
         e.parentElement.removeChild(e);
@@ -36,17 +37,20 @@
         bar.setAttribute('title', (100 * points / sumPoints).toFixed(1) + '%');
         n.parentNode.appendChild(bar);
     }
-    const indexedPoints = points.map((x, idx) => ({points: x, idx: idx}));
-    indexedPoints.sort((a, b) => b.points - a.points);
-    const groupSize = tbody.children.length / nodes.length;
-    const elements = [];
-    for (let i = 0; i < indexedPoints.length; ++i) {
-        const idx = indexedPoints[i].idx;
-        const points = indexedPoints[i].points;
-        for (let j = idx * groupSize; j < idx * groupSize + groupSize; ++j) {
-            elements.push(tbody.children[j]);
+    if (options.sort) {
+        const indexedPoints = points.map((x, idx) => ({points: x, idx: idx}));
+        indexedPoints.sort((a, b) => b.points - a.points);
+        const groupSize = tbody.children.length / nodes.length;
+        if (!Number.isInteger(groupSize)) return;
+        const elements = [];
+        for (let i = 0; i < indexedPoints.length; ++i) {
+            const idx = indexedPoints[i].idx;
+            const points = indexedPoints[i].points;
+            for (let j = idx * groupSize; j < idx * groupSize + groupSize; ++j) {
+                elements.push(tbody.children[j]);
+            }
         }
+        tbody.textContent = '';
+        tbody.append(...elements);
     }
-    tbody.textContent = '';
-    tbody.append(...elements);
-})();
+});
