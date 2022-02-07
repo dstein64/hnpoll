@@ -6,27 +6,27 @@ chrome.storage.local.get(['options'], function(storage) {
     for (const e of [...document.getElementsByClassName(_class)]) {
         e.parentElement.removeChild(e);
     }
-    let nodes = [...document.querySelectorAll('.fatitem .score')].slice(1);
-    if (nodes.length === 0) return;
-    let tbody = nodes[0];
-    while (tbody !== null && tbody.tagName !== 'TBODY') {
-        tbody = tbody.parentElement;
-    }
+    const tbody = document.querySelector('table.fatitem > tbody table > tbody');
     if (tbody === null) return;
-    nodes = nodes.filter(x => tbody.contains(x));
-    const points = nodes.map(x => parseInt(x.textContent));
-    const maxPoints = Math.max(...points);
-    const sumPoints = points.reduce((a, b) => a + b, 0);
-    if (!isFinite(maxPoints) || maxPoints <= 0) return;
-    for (const n of nodes) {
-        const points = parseInt(n.textContent);
+    const names = [...tbody.querySelectorAll('.comment')].map(x => x.textContent.trim());
+    const scoreNodes = [...tbody.querySelectorAll('.score')];
+    const scores = scoreNodes.map(x => parseInt(x.textContent));
+    if (names.length === 0) return;
+    if (names.length !== scoreNodes.length || names.length !== scores.length)
+        return;
+    const items = names.map((x, i) =>
+        ({idx: i, name: x, score: scores[i], scoreNode: scoreNodes[i]}));
+    const maxScore = Math.max(...scores);
+    const sumScore = scores.reduce((a, b) => a + b, 0);
+    if (!isFinite(maxScore) || maxScore <= 0) return;
+    for (const item of items) {
         const bar = document.createElement('div');
         bar.className = _class;
-        const left = n.parentNode.getBoundingClientRect().left;
+        const left = item.scoreNode.parentNode.getBoundingClientRect().left;
         let maxWidth = 400;  // in pixels
         maxWidth = Math.min(maxWidth, window.screen.width - left - 30);
         if (maxWidth <= 0) continue;
-        bar.style.width = ((points / maxPoints) * maxWidth) + 'px';
+        bar.style.width = ((item.score / maxScore) * maxWidth) + 'px';
         bar.style.height = '10px';
         bar.style.background = '#828282';
         bar.style.marginTop = '5px';
@@ -34,19 +34,16 @@ chrome.storage.local.get(['options'], function(storage) {
         bar.style.marginRight = '0px';
         bar.style.paddingLeft = '0px';
         bar.style.paddingRight = '0px';
-        bar.setAttribute('title', (100 * points / sumPoints).toFixed(1) + '%');
-        n.parentNode.appendChild(bar);
+        bar.setAttribute('title', (100 * item.score / sumScore).toFixed(1) + '%');
+        item.scoreNode.parentNode.appendChild(bar);
     }
     if (options.sort) {
-        const indexedPoints = points.map((x, idx) => ({points: x, idx: idx}));
-        indexedPoints.sort((a, b) => b.points - a.points);
-        const groupSize = tbody.children.length / nodes.length;
+        const sortedItems = [...items].sort((a, b) => b.score - a.score);
+        const groupSize = tbody.children.length / sortedItems.length;
         if (!Number.isInteger(groupSize)) return;
         const elements = [];
-        for (let i = 0; i < indexedPoints.length; ++i) {
-            const idx = indexedPoints[i].idx;
-            const points = indexedPoints[i].points;
-            for (let j = idx * groupSize; j < idx * groupSize + groupSize; ++j) {
+        for (const item of sortedItems) {
+            for (let j = item.idx * groupSize; j < item.idx * groupSize + groupSize; ++j) {
                 elements.push(tbody.children[j]);
             }
         }
