@@ -5,7 +5,7 @@
 
 function defaultOptions() {
     const options = Object.create(null);
-    options['sorting'] = 'numeric';
+    options['sorting'] = 'none';
     return options;
 }
 
