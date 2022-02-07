@@ -14,12 +14,12 @@ const statusMessage = function(message, time) {
 
 const saveOptions = function() {
     const options = Object.create(null);
-    options['sort'] = document.getElementById('sort-checkbox').checked;
+    options['sorting'] = document.querySelector('input[name="sorting"]:checked').value;
     chrome.storage.local.set({options: options});
 };
 
 const loadOptions = function(options) {
-    document.getElementById('sort-checkbox').checked = options['sort'];
+    document.getElementById(`sorting-${options['sorting']}`).checked = true
     // Options must be saved when loaded to keep everything in sync (since there
     // is no specific "save" button"). onchange/oninput won't fire when loading
     // options with javascript, so trigger saveOptions manually.
@@ -44,16 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             statusMessage('Options Reverted', 1200);
         });
     });
-
-    // Decouple label for touch devices, since clicking shows the tooltip.
-    if (window.matchMedia('(pointer: coarse)').matches) {
-        let toRemove = new Set(['sort-checkbox']);
-        let labels = document.getElementsByTagName('label');
-        for (let i = 0; i < labels.length; ++i) {
-            if (toRemove.has(labels[i].htmlFor))
-                labels[i].removeAttribute('for');
-        }
-    }
 });
 
 // Save options on any user input.

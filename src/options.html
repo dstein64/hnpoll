@@ -2,12 +2,20 @@
 <head>
     <title><em>Bar Charts for Hacker News Polls</em> Extension Options</title>
 <style>
-#checkboxes {
-    line-height: 200%;
-}
-
 body {
     margin-top: 20px;
+}
+
+#sorting-header {
+    padding-bottom: 8px;
+    font-weight: bold;
+}
+
+#sorting-options {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 8px;
+    padding-left: 12px;
 }
 
 a.tooltip {
@@ -53,14 +61,31 @@ a.tooltip span {
 <div id="container">
 <h3><em>Bar Charts for Hacker News Polls</em> v<span id="version"></span></h3>
 <h2>Options</h2>
-<input type="checkbox" id="sort-checkbox">
-<label for="sort-checkbox">
+<div id="sorting-header">Sorting:</div>
+<div id="sorting-options">
+<input type="radio" id="sorting-none" name="sorting" value="none">
+<label for="sorting-none">
     <a class="tooltip">
-        <span>When enabled, HN poll results will be sorted by points.</span>
-        Sort
+        <span>Don't sort results. Keep the same order as received.</span>
+        None
     </a>
 </label>
-<br><br>
+<input type="radio" id="sorting-alphabetic" name="sorting" value="alphabetic">
+<label for="sorting-alphabetic">
+    <a class="tooltip">
+        <span>Sort results alphabetically.</span>
+        Alphabetic
+    </a>
+</label>
+<input checked type="radio" id="sorting-numeric" name="sorting" value="numeric">
+<label for="sorting-numeric">
+    <a class="tooltip">
+        <span>Sort results by the number of points.</span>
+        Numeric
+    </a>
+</label>
+</div>
+<br>
 <button id="defaults">Defaults</button>
 <button id="revert">Revert</button>
 <br><br>

@@ -5,19 +5,23 @@
 
 function defaultOptions() {
     const options = Object.create(null);
-    options['sort'] = true;
+    options['sorting'] = 'numeric';
     return options;
 }
 
-// Set missing options using defaults.
 chrome.storage.local.get({options: {}}, function(storage) {
     const options = storage.options;
     const defaults = defaultOptions();
-    const keys = Object.keys(defaults);
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
+    // Set missing options using defaults.
+    for (const key of Object.keys(defaults)) {
         if (!(key in options)) {
             options[key] = defaults[key];
+        }
+    }
+    // Remove keys not in defaults.
+    for (const key of Object.keys(options)) {
+        if (!(key in defaults)) {
+            delete options[key];
         }
     }
     chrome.storage.local.set({options: options});

@@ -2,6 +2,8 @@ chrome.storage.local.get(['options'], function(storage) {
     if (document.location.hostname !== 'news.ycombinator.com') return;
     if (!document.title.startsWith('Poll:')) return;
     const options = storage.options;
+    if (!['none', 'alphabetic', 'numeric'].includes(options.sorting))
+        return;
     const _class = '_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb';
     for (const e of [...document.getElementsByClassName(_class)]) {
         e.parentElement.removeChild(e);
@@ -37,8 +39,14 @@ chrome.storage.local.get(['options'], function(storage) {
         bar.setAttribute('title', (100 * item.score / sumScore).toFixed(1) + '%');
         item.scoreNode.parentNode.appendChild(bar);
     }
-    if (options.sort) {
-        const sortedItems = [...items].sort((a, b) => b.score - a.score);
+    if (options.sorting !== 'none') {
+        // The initial compare assumes options.sorting === 'alphabetic'.
+        let compare = (a, b) => a.name.localeCompare(b.name);
+        if (options.sorting === 'numeric') {
+            compare = (a, b) => b.score - a.score;
+        }
+        const sortedItems = [...items];
+        sortedItems.sort(compare);
         const groupSize = tbody.children.length / sortedItems.length;
         if (!Number.isInteger(groupSize)) return;
         const elements = [];
