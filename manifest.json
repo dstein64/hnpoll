@@ -3,7 +3,7 @@
       "scripts": ["src/background.js"]
    },
    "content_scripts": [ {
-      "js": ["src/content.js"],
+      "js": ["src/extract.js", "src/content.js"],
       "matches": ["*://news.ycombinator.com/*"]
    } ],
    "description": "Generate a bar chart for Hacker News polls.",

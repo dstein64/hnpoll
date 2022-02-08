@@ -8,16 +8,10 @@ chrome.storage.local.get(['options'], function(storage) {
     for (const e of [...document.getElementsByClassName(_class)]) {
         e.parentElement.removeChild(e);
     }
-    const tbody = document.querySelector('table.fatitem > tbody table > tbody');
-    if (tbody === null) return;
-    const names = [...tbody.querySelectorAll('.comment')].map(x => x.textContent.trim());
-    const scoreNodes = [...tbody.querySelectorAll('.score')];
-    const scores = scoreNodes.map(x => parseInt(x.textContent));
-    if (names.length === 0) return;
-    if (names.length !== scoreNodes.length || names.length !== scores.length)
-        return;
-    const items = names.map((x, i) =>
-        ({idx: i, name: x, score: scores[i], scoreNode: scoreNodes[i]}));
+    const extracted = extract(document);
+    if (extracted === null) return;
+    const {items, tbody} = extract(document);
+    const scores = items.map(x => x.score);
     const maxScore = Math.max(...scores);
     const sumScore = scores.reduce((a, b) => a + b, 0);
     if (!isFinite(maxScore) || maxScore <= 0) return;
