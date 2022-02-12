@@ -9,8 +9,8 @@ const { JSDOM } = jsdom;
 
 const {extract} = require(__dirname + '/src/extract.js');
 
-const URL = 'https://news.ycombinator.com/item?id=30055031';
-https.get(URL, resp => {
+const url = 'https://news.ycombinator.com/item?id=30055031';
+https.get(url, resp => {
     let data = '';
     resp.on('data', chunk => {
         data += chunk;
