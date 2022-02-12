@@ -20,7 +20,7 @@ https.get(URL, resp => {
         const extracted = extract(dom.window.document);
         assert.notEqual(extracted, null);
         const {items, tbody} = extracted;
-        assert.equal(items.length, 2);  // temporarily wrong
+        assert.equal(items.length, 3);
         const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
         assert.equal(sortedItems[0].name, 'Linux');
         assert(sortedItems[0].score >= 247);
