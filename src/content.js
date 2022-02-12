@@ -39,8 +39,7 @@ chrome.storage.local.get(['options'], function(storage) {
         if (options.sorting === 'numeric') {
             compare = (a, b) => b.score - a.score;
         }
-        const sortedItems = [...items];
-        sortedItems.sort(compare);
+        const sortedItems = [...items].sort(compare);
         const groupSize = tbody.children.length / sortedItems.length;
         if (!Number.isInteger(groupSize)) return;
         const elements = [];
