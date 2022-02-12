@@ -10,7 +10,7 @@ chrome.storage.local.get(['options'], function(storage) {
     }
     const extracted = extract(document);
     if (extracted === null) return;
-    const {items, tbody} = extract(document);
+    const {items, tbody} = extracted;
     const scores = items.map(x => x.score);
     const maxScore = Math.max(...scores);
     const sumScore = scores.reduce((a, b) => a + b, 0);
