@@ -5,7 +5,7 @@ const assert = require('assert');
 const https = require('https');
 
 const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
+const {JSDOM} = jsdom;
 
 const {extract} = require(__dirname + '/src/extract.js');
 
