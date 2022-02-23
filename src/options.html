@@ -1,6 +1,7 @@
 <html>
 <head>
     <title><em>Bar Charts for Hacker News Polls</em> Extension Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
     margin-top: 20px;
@@ -25,13 +26,17 @@ a.tooltip {
 a.tooltip:hover { text-decoration: none; }
 a.tooltip span {
     z-index: 10;
+    position: absolute;
+    left: 0;
     display: none;
     padding: 14px 20px;
-    margin-top: -65px;
-    margin-left: 0;
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
     width: auto;
     max-width: 300px;
     line-height: 16px;
+    text-align: left;
 }
 a.tooltip:hover span {
     display: inline;

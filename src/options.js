@@ -45,6 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
             statusMessage('Options Reverted', 1200);
         });
     });
+
+    // Decouple label for touch devices, since clicking shows the tooltip.
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        let labels = document.getElementsByTagName('label');
+        for (const label of labels) {
+            if (label.querySelector('.tooltip'))
+                label.removeAttribute('for');
+        }
+    }
 });
 
 // Save options on any user input.

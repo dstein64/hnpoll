@@ -1,3 +1,5 @@
+[![build][badge_thumbnail]][badge_link]
+
 Bar Charts for Hacker News Polls
 ================================
 
@@ -20,3 +22,6 @@ License
 -------
 
 See [LICENSE](LICENSE).
+
+[badge_link]: https://github.com/dstein64/hnpoll/actions/workflows/build.yml
+[badge_thumbnail]: https://github.com/dstein64/hnpoll/actions/workflows/build.yml/badge.svg
