@@ -9,7 +9,7 @@ function defaultOptions() {
     return options;
 }
 
-chrome.storage.local.get(['options'], function(storage) {
+chrome.storage.local.get({options: {}}, function(storage) {
     const options = storage.options;
     const defaults = defaultOptions();
     // Set missing options using defaults.
