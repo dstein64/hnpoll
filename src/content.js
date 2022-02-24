@@ -2,6 +2,7 @@ chrome.storage.local.get(['options'], function(storage) {
     if (document.location.hostname !== 'news.ycombinator.com') return;
     if (!document.title.startsWith('Poll:')) return;
     const options = storage.options;
+    if (!options) return;
     if (!['none', 'alphabetic', 'numeric'].includes(options.sorting))
         return;
     const _class = '_hnpoll_bf08b84d-4439-4b9e-bb9b-bb20b96decdb';
