@@ -18,6 +18,15 @@ The following image shows a bar chart produced by *hnpoll* on an HN poll.
 
 <img src="https://github.com/dstein64/media/blob/main/hnpoll/screenshot.png?raw=true" width="796" />
 
+Development
+-----------
+
+A different `manifest.json` is used for Chrome and Firefox. For development, create a symbolic link
+`manifest.json` that points to either `manifest_chrome.json` or `manifest_firefox.json`, depending
+on the environment.
+
+To generate zip archives, run `zip.sh`.
+
 License
 -------
 
