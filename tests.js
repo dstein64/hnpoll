@@ -3,14 +3,24 @@
 
 const assert = require('assert');
 const https = require('https');
+const {HttpsProxyAgent} = require('https-proxy-agent');
 
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 const {extract} = require(__dirname + '/src/extract.js');
 
+let https_agent = undefined;
+const https_proxy = process.env.https_proxy;
+if (https_proxy !== undefined) {
+    https_agent = new HttpsProxyAgent(https_proxy);
+}
+const options = {
+    agent: https_agent,
+};
+
 const url = 'https://news.ycombinator.com/item?id=42836273';
-https.get(url, resp => {
+https.get(url, options, resp => {
     assert.equal(resp.statusCode, 200);
     let data = '';
     resp.on('data', chunk => {
