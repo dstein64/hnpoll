@@ -11,6 +11,7 @@ const {extract} = require(__dirname + '/src/extract.js');
 
 const url = 'https://news.ycombinator.com/item?id=30055031';
 https.get(url, resp => {
+    assert.equal(resp.statusCode, 200);
     let data = '';
     resp.on('data', chunk => {
         data += chunk;
