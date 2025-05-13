@@ -3,10 +3,9 @@
 
 const assert = require('assert');
 const https = require('https');
-const {HttpsProxyAgent} = require('https-proxy-agent');
 
-const jsdom = require('jsdom');
-const {JSDOM} = jsdom;
+const {HttpsProxyAgent} = require('https-proxy-agent');
+const {JSDOM} = require('jsdom');
 
 const {extract} = require(__dirname + '/src/extract.js');
 
