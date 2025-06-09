@@ -20,12 +20,12 @@ const options = {
 
 const url = 'https://news.ycombinator.com/item?id=42836273';
 https.get(url, options, resp => {
-    assert.equal(resp.statusCode, 200);
     let data = '';
     resp.on('data', chunk => {
         data += chunk;
     });
     resp.on('end', () => {
+        assert.equal(resp.statusCode, 200, data);
         const dom = new JSDOM(data);
         const extracted = extract(dom.window.document);
         assert.notEqual(extracted, null);
